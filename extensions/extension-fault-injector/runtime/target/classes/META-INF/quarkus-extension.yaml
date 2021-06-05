@@ -1,0 +1,7 @@
+---
+metadata:
+  built-with-quarkus-core: "io.quarkus:quarkus-core:1.12.0.Final"
+group-id: "io.quarkus.workshop.super-heroes"
+artifact-id: "extension-fault-injector"
+version: "1.0"
+name: "Quarkus Workshop :: Extensions :: Fault Injector Extension :: Runtime"

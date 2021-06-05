@@ -1,0 +1,12 @@
+-------------------------------------------------------------------------------
+Test set: io.quarkus.workshop.superheroes.villain.VillainResourceTest
+-------------------------------------------------------------------------------
+Tests run: 13, Failures: 0, Errors: 1, Skipped: 12, Time elapsed: 46.952 s <<< FAILURE! - in io.quarkus.workshop.superheroes.villain.VillainResourceTest
+shouldGetInitialItems  Time elapsed: 0.006 s  <<< ERROR!
+java.lang.RuntimeException: java.lang.reflect.InvocationTargetException
+Caused by: java.lang.reflect.InvocationTargetException
+Caused by: java.lang.RuntimeException: Error waiting for test resource future to finish.
+Caused by: java.util.concurrent.ExecutionException: java.lang.RuntimeException: Unable to start Quarkus test resource io.quarkus.workshop.superheroes.villain.DatabaseResource@451507b9
+Caused by: java.lang.RuntimeException: Unable to start Quarkus test resource io.quarkus.workshop.superheroes.villain.DatabaseResource@451507b9
+Caused by: java.lang.IllegalStateException: Could not find a valid Docker environment. Please see logs and check configuration
+
