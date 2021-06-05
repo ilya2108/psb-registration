@@ -1,0 +1,19 @@
+apiVersion : apps/v1
+kind: Deployment
+metadata:
+  name: gpbregistration 
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: gpbregistration
+  template:
+    metadata:
+      labels:
+        app: gpbregistration 
+    spec:
+      containers:
+        - name: gpbregistration 
+          image: reproches.azurecr.io/gpbregistration
+          ports:
+          - containerPort: 8084
