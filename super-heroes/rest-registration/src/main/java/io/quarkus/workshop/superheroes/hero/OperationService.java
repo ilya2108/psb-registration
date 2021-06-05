@@ -28,6 +28,9 @@ public class OperationService {
 
     public Operation updateOperation(@Valid Operation operation) {
         Operation entity = Operation.findById(operation.id);
+        entity.history.add(String.join(",", entity.emptyParameters()));
+        System.out.println(entity.history);
+
         if (operation.sourceAccount != null)
             entity.sourceAccount = operation.sourceAccount;
         if (operation.destinationAccount != null)
@@ -38,6 +41,18 @@ public class OperationService {
             entity.exchangeRate = operation.exchangeRate;
         if (operation.amount != null)
             entity.amount = operation.amount;
+
+        return entity;
+    }
+
+    public Operation goBack(@Valid Operation operation) {
+        Operation entity = Operation.findById(operation.id);
+
+        entity.lastAddedParams().forEach(param -> {
+            entity.nullify(param);
+        });
+        
+        entity.popHistory();
 
         return entity;
     }

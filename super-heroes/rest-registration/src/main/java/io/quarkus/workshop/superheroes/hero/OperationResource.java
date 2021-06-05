@@ -52,7 +52,7 @@ public class OperationResource {
     public Response goBack(
         @RequestBody(required = true, content = @Content(mediaType = APPLICATION_JSON, schema = @Schema(implementation = Operation.class))) 
         @Valid Operation operation) {
-
+        return Response.ok(service.goBack(operation).emptyParameters()).build();
     }
 
     @POST
