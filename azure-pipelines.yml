@@ -14,7 +14,7 @@ variables:
   dockerRegistryServiceConnection: '4b14483d-0d9d-4295-9d15-a5ad9ee1f027'
   imageRepository: 'gpbregistration'
   containerRegistry: 'reproches.azurecr.io'
-  dockerfilePath: 'rest-registration/src/main/docker/Dockerfile.multistage'
+  dockerfilePath: '**/rest-registration/src/main/docker/Dockerfile.multistage'
   tag: '$(Build.BuildId)'
   imagePullSecret: 'reprochesf2dd-auth'
 
