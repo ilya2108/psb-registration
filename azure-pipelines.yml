@@ -35,7 +35,7 @@ stages:
     - task: CmdLine@2
       displayName: Get into Service Directory
       inputs:
-        script: 'cd rest-registration'
+        script: 'cd **/rest-registration'
      
     - task: Docker@2
       displayName: Build and push an image to container registry
