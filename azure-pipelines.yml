@@ -14,7 +14,7 @@ variables:
   dockerRegistryServiceConnection: '4b14483d-0d9d-4295-9d15-a5ad9ee1f027'
   imageRepository: 'gpbregistration'
   containerRegistry: 'reproches.azurecr.io'
-  dockerfilePath: '**/src/main/docker/Dockerfile.multistage'
+  dockerfilePath: '/src/main/docker/Dockerfile.multistage'
   tag: '$(Build.BuildId)'
   imagePullSecret: 'reprochesf2dd-auth'
 
@@ -33,9 +33,14 @@ stages:
     steps:
     
     - task: CmdLine@2
-      displayName: Get into Service Directory
+      displayName: Copy the Service locally
       inputs:
-        script: 'cd **/rest-registration'
+        script: 'cp **/rest-registration'
+    
+    - task: CmdLine@2
+      displayName: Open the local service version
+      inputs:
+        script: 'cp /rest-registration'
      
     - task: Docker@2
       displayName: Build and push an image to container registry
