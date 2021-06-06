@@ -12,7 +12,7 @@ variables:
 
   # Container registry service connection established during pipeline creation
   dockerRegistryServiceConnection: '4b14483d-0d9d-4295-9d15-a5ad9ee1f027'
-  imageRepository: 'gpbregistration'
+  imageRepository: 'psb-registration'
   containerRegistry: 'reproches.azurecr.io'
   dockerfilePath: '**/src/main/docker/Dockerfile.multistage'
   tag: '$(Build.BuildId)'
