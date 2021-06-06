@@ -35,12 +35,12 @@ stages:
     - task: CmdLine@2
       displayName: Copy the Service locally
       inputs:
-        script: 'cp **/rest-registration'
+        script: 'cp **/rest-registration .'
     
     - task: CmdLine@2
       displayName: Open the local service version
       inputs:
-        script: 'cp /rest-registration'
+        script: 'cd /rest-registration'
      
     - task: Docker@2
       displayName: Build and push an image to container registry
