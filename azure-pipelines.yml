@@ -33,15 +33,10 @@ stages:
     steps:
     
     - task: CmdLine@2
-      displayName: Copy the Service locally
-      inputs:
-        script: 'cp -r **/rest-registration .'
-    
-    - task: CmdLine@2
       displayName: Open the Service directory
       inputs:
-        script: 'cd rest-registration'
-     
+        script: 'cd **/rest-registration'
+    
     - task: CmdLine@2
       displayName: Tmp ls command
       inputs:
