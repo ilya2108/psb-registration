@@ -3,6 +3,9 @@ package io.quarkus.workshop.superheroes.hero;
 import javax.enterprise.context.ApplicationScoped;
 import javax.transaction.Transactional;
 import javax.validation.Valid;
+
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import static javax.transaction.Transactional.TxType.REQUIRED;
@@ -11,6 +14,8 @@ import static javax.transaction.Transactional.TxType.SUPPORTS;
 @ApplicationScoped
 @Transactional(REQUIRED)
 public class OperationService {
+    List<String> history = new ArrayList<>();
+
     @Transactional(SUPPORTS)
     public List<Operation> findAllOperations() {
         return Operation.listAll();
@@ -28,8 +33,8 @@ public class OperationService {
 
     public Operation updateOperation(@Valid Operation operation) {
         Operation entity = Operation.findById(operation.id);
-        entity.history.add(String.join(",", entity.emptyParameters()));
-        System.out.println(entity.history);
+        history.add(String.join(",", entity.emptyParameters()));
+        System.out.println(history);
 
         if (operation.sourceAccount != null)
             entity.sourceAccount = operation.sourceAccount;
@@ -48,12 +53,22 @@ public class OperationService {
     public Operation goBack(@Valid Operation operation) {
         Operation entity = Operation.findById(operation.id);
 
-        entity.lastAddedParams().forEach(param -> {
+        lastAddedParams().forEach(param -> {
             entity.nullify(param);
         });
         
-        entity.popHistory();
+        popHistory();
 
         return entity;
+    }
+
+    public List<String> lastAddedParams() {
+        if (history.isEmpty())
+            return List.of("sourceAccount", "destinationAccount", "currency", "exchangeRate", "amount");
+        return Arrays.asList(history.get(history.size() - 1).split(","));
+    }
+
+    public void popHistory() {
+        history.remove(history.size() - 1);
     }
 }

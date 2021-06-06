@@ -16,8 +16,6 @@ public class Operation extends PanacheEntity {
     public String currency;
     public Double exchangeRate;
     public Double amount;
-    @ElementCollection
-    List<String> history = new ArrayList<>();
 
     public List<String> emptyParameters() {
         List<String> empty = new ArrayList<>();
@@ -57,13 +55,4 @@ public class Operation extends PanacheEntity {
         }
     }
 
-    public List<String> lastAddedParams() {
-        if (history.isEmpty())
-            return List.of("sourceAccount", "destinationAccount", "currency", "exchangeRate", "amount");
-        return Arrays.asList(history.get(history.size() - 1).split(","));
-    }
-
-    public void popHistory() {
-        history.remove(history.size() - 1);
-    }
 }
