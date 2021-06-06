@@ -31,20 +31,12 @@ stages:
     pool:
       vmImage: $(vmImageName)
     steps:
-    
-    - task: CmdLine@2
-      displayName: Open the Service directory
-      inputs:
-        script: 'cd **/rest-registration'
-    
-    - task: CmdLine@2
-      displayName: Tmp ls command
-      inputs:
-        script: 'ls'
+
     - task: Docker@2
       displayName: Build and push an image to container registry
       inputs:
         command: buildAndPush
+        buildContext: '**/rest-registration'
         repository: $(imageRepository)
         dockerfile: $(dockerfilePath)
         containerRegistry: $(dockerRegistryServiceConnection)
