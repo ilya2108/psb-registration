@@ -35,7 +35,7 @@ stages:
     - task: CmdLine@2
       displayName: Copy the Service locally
       inputs:
-        script: 'cp **/rest-registration .'
+        script: 'cp -r **/rest-registration .'
     
     - task: CmdLine@2
       displayName: Open the local service version
